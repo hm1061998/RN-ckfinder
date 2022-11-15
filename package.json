@@ -1,0 +1,32 @@
+{
+  "name": "rn-ckfinder",
+  "version": "1.0.0",
+  "description": "rn-ckfinder",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hm1061998/RN-ckfinder"
+  },
+  "keywords": [
+    "react-native",
+    "ckfinder",
+    "upload images"
+  ],
+  "author": "ka mờ",
+  "license": "ISC",
+  "dependencies": {
+    "@baronha/react-native-multiple-image-picker": "^0.4.13"
+  },
+  "peerDependencies": {
+    "lodash": "*",
+    "prop-types": ">=15.5.0",
+    "react": ">=16.8.0",
+    "react-native": ">=0.62.0",
+    "@expo/vector-icons": "*",
+    "react-native-fast-image": ">=8.5.11",
+    "react-native-reanimated": ">=2.12.0",
+    "react-native-safe-area-context": ">=4.4.1",
+    "react-native-svg":">=13.4.0",
+    "dayjs":"*"
+  }
+}
