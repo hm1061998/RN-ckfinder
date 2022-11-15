@@ -259,7 +259,7 @@ const Ckfinder = ({}, ref) => {
       setFilesSelected((prev) =>
         prev.filter((item) => item.name !== file.name)
       );
-    } else {
+    } else if (state.maxLength > filesSelected.length) {
       setFilesSelected((prev) => [...prev, file]);
     }
   };
@@ -426,9 +426,7 @@ const Ckfinder = ({}, ref) => {
                         <TouchableOpacity
                           onPress={() => {
                             closeFolderList();
-                            if (state.maxLength > filesSelected.length) {
-                              handleSelectFile({ ...item, uri });
-                            }
+                            handleSelectFile({ ...item, uri });
                           }}
                           key={item.name}
                           style={[styles.item, checked && styles.itemActive]}
