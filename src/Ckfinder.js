@@ -315,12 +315,12 @@ const Ckfinder = ({}, ref) => {
       animationType="slide"
       statusBarTranslucent
       presentationStyle="pageSheet"
-      transparent
+      transparent={Platform.OS === "android"}
     >
       <View
         style={[
           styles.container,
-          Platform.OS === "android" && {marginTop: insets.top },
+          Platform.OS === "android" && { marginTop: insets.top },
         ]}
       >
         <StatusBar barStyle="dark-content" />
@@ -532,7 +532,7 @@ const Ckfinder = ({}, ref) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:'#fff'
+    backgroundColor: "#fff",
   },
   headerTop: {
     alignItems: "flex-end",
