@@ -16,10 +16,8 @@ import {
   useWindowDimensions,
   ActivityIndicator,
   Image,
-  ScrollView,
   Platform,
   FlatList,
-  RefreshControl,
 } from "react-native";
 // import axios from 'axios';
 import Animated, {
@@ -30,7 +28,6 @@ import Animated, {
   Extrapolation,
 } from "react-native-reanimated";
 import {
-  FontAwesome5,
   FontAwesome,
   MaterialIcons,
   Ionicons,
@@ -429,7 +426,7 @@ const Ckfinder = ({}, ref) => {
                         <TouchableOpacity
                           onPress={() => {
                             closeFolderList();
-                            if (maxLength < filesSelected.length) {
+                            if (state.maxLength > filesSelected.length) {
                               handleSelectFile({ ...item, uri });
                             }
                           }}
