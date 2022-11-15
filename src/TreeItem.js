@@ -1,13 +1,13 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from "react";
 import {
   View,
   TouchableOpacity,
   Text,
   StyleSheet,
   ActivityIndicator,
-} from 'react-native';
-import { Feather, FontAwesome } from '@expo/vector-icons';
-import color from '../utils/color';
+} from "react-native";
+import { Feather, FontAwesome } from "@expo/vector-icons";
+import color from "../utils/color";
 
 const TreeItem = ({
   level = 0,
@@ -21,15 +21,15 @@ const TreeItem = ({
 }) => {
   // console.log('handleGetFiles', handleGetFiles);
   const [isExpanded, setIsExpanded] = useState(
-    defaultExpanded && data.hasChildren,
+    defaultExpanded && data.hasChildren
   );
   const [ckFinderData, setCkFinderData] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const { startupPath, connectorInfo, connectorPath } = state;
 
-  const path = startupPath.split(':');
-  const defaultCurrentFolder = path[1]?.replaceAll('/', '');
+  const path = startupPath.split(":");
+  const defaultCurrentFolder = path[1]?.replaceAll("/", "");
 
   useEffect(() => {
     //nếu là thư mục được mở mặc định
@@ -58,15 +58,19 @@ const TreeItem = ({
   const handleLoadChild = useCallback(async () => {
     setLoading(true);
     const url = `${connectorPath}?command=GetFolders&type=${resourceType}&currentFolder=${currentFolder}&${connectorInfo}`;
-    const result = await fetch(url).then(res => res.json());
-    const response = result;
-    setLoading(false);
-    setCkFinderData(response);
+    try {
+      const result = await fetch(url).then((res) => res.json());
+      const response = result;
+      setLoading(false);
+      setCkFinderData(response);
+    } catch (e) {
+      setLoading(false);
+    }
   }, [connectorInfo, connectorPath, resourceType, currentFolder]);
 
   function getIndicator(_isExpanded, hasChildrenNodes) {
     if (!hasChildrenNodes) {
-      return '';
+      return "";
     } else if (loading) {
       return (
         <View style={{ transform: [{ scale: 0.8 }] }}>
@@ -74,9 +78,9 @@ const TreeItem = ({
         </View>
       );
     } else if (_isExpanded) {
-      return <Feather name="chevron-down" size={20} color={'black'} />;
+      return <Feather name="chevron-down" size={20} color={"black"} />;
     } else {
-      return <Feather name="chevron-right" size={20} color={'black'} />;
+      return <Feather name="chevron-right" size={20} color={"black"} />;
     }
   }
 
@@ -88,19 +92,21 @@ const TreeItem = ({
           styles.treeItem,
           {
             paddingLeft: 15 * level,
-            backgroundColor: checkActive ? '#fff' : '#f7f8f9',
+            backgroundColor: checkActive ? "#fff" : "#f7f8f9",
           },
-        ]}>
+        ]}
+      >
         <TouchableOpacity
           style={{
             paddingLeft: 10,
             flex: 1,
-            flexDirection: 'row',
-            alignItems: 'center',
+            flexDirection: "row",
+            alignItems: "center",
           }}
-          onPress={() => handleGetFiles(data?.name, resourceType)}>
+          onPress={() => handleGetFiles(data?.name, resourceType)}
+        >
           <FontAwesome
-            name={isExpanded || checkActive ? 'folder-open' : 'folder'}
+            name={isExpanded || checkActive ? "folder-open" : "folder"}
             size={20}
             color={color.theme}
           />
@@ -116,7 +122,8 @@ const TreeItem = ({
               if (!ckFinderData) {
                 handleLoadChild();
               }
-            }}>
+            }}
+          >
             {getIndicator(isExpanded, data?.hasChildren)}
           </TouchableOpacity>
         )}
@@ -141,13 +148,13 @@ const TreeItem = ({
 
 const styles = StyleSheet.create({
   treeItem: {
-    flexDirection: 'row',
+    flexDirection: "row",
     paddingVertical: 15,
-    alignItems: 'center',
+    alignItems: "center",
     borderBottomWidth: 0.7,
-    borderBottomColor: '#d7dcdf',
-    justifyContent: 'space-between',
-    backgroundColor: '#f7f8f9',
+    borderBottomColor: "#d7dcdf",
+    justifyContent: "space-between",
+    backgroundColor: "#f7f8f9",
   },
 });
 export default TreeItem;
