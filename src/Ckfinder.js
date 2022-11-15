@@ -146,7 +146,7 @@ const Ckfinder = ({}, ref) => {
         tapHereToChange: "Chạm vào đây để thay đổi",
         maximumMessage: "Bạn đã chọn số lượng phương tiện tối đa được phép",
         isPreview: false,
-        maxSelectedAssets: maxLength - filesSelected.length,
+        // maxSelectedAssets: maxLength - filesSelected.length,
         mediaType: "image",
       };
 
@@ -315,11 +315,12 @@ const Ckfinder = ({}, ref) => {
       animationType="slide"
       statusBarTranslucent
       presentationStyle="pageSheet"
+      transparent
     >
       <View
         style={[
           styles.container,
-          Platform.OS === "android" && { paddingTop: insets.top },
+          Platform.OS === "android" && {marginTop: insets.top },
         ]}
       >
         <StatusBar barStyle="dark-content" />
@@ -531,6 +532,7 @@ const Ckfinder = ({}, ref) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor:'#fff'
   },
   headerTop: {
     alignItems: "flex-end",
