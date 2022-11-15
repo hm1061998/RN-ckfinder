@@ -314,8 +314,14 @@ const Ckfinder = ({}, ref) => {
       onRequestClose={() => setVisible(false)}
       animationType="slide"
       statusBarTranslucent
+      presentationStyle="pageSheet"
     >
-      <View style={[styles.container, { paddingTop: insets.top }]}>
+      <View
+        style={[
+          styles.container,
+          Platform.OS === "android" && { paddingTop: insets.top },
+        ]}
+      >
         <StatusBar barStyle="dark-content" />
         <View style={styles.headerTop}>
           <TouchableOpacity onPress={() => setVisible(false)}>
