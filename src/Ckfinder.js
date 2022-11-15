@@ -209,8 +209,7 @@ const Ckfinder = ({}, ref) => {
     data.append("upload", {
       name: photo.name,
       type: photo.type,
-      uri:
-        Platform.OS === "ios" ? photo.path.replace("file://", "") : photo.path,
+      uri: photo.path,
     });
 
     Object.keys(body).forEach((key) => {
