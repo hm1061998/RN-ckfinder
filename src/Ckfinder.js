@@ -314,7 +314,9 @@ const Ckfinder = ({}, ref) => {
       onRequestClose={() => setVisible(false)}
       animationType="slide"
       statusBarTranslucent
-      presentationStyle="pageSheet"
+      presentationStyle={
+        Platform.OS === "android" ? "overFullScreen" : "pageSheet"
+      }
       transparent={Platform.OS === "android"}
     >
       <View
