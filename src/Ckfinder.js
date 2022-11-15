@@ -68,6 +68,7 @@ const Ckfinder = ({}, ref) => {
       "http://ckfinder.nhathuocgpp.com.vn/core/connector/php/connector.php",
     startupPath: `Images:/${dayjs().format("YYYYMMDD")}/`,
     onInit: () => true,
+    maxLength: 5,
   });
 
   const [ckFinderData, setCkFinderData] = useState(null);
@@ -91,9 +92,9 @@ const Ckfinder = ({}, ref) => {
     if (!visible) {
       closeFolderList();
       setFilesSelected([]);
-      setCkFinderData(null)
-      setFilesData(null)
-      setFolderActiveName(null)
+      setCkFinderData(null);
+      setFilesData(null);
+      setFolderActiveName(null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible]);
@@ -137,6 +138,7 @@ const Ckfinder = ({}, ref) => {
   );
 
   const openPicker = async () => {
+    const { maxLength } = state;
     try {
       const options = {
         usedCameraButton: true,
@@ -147,9 +149,7 @@ const Ckfinder = ({}, ref) => {
         tapHereToChange: "Chạm vào đây để thay đổi",
         maximumMessage: "Bạn đã chọn số lượng phương tiện tối đa được phép",
         isPreview: false,
-        // maxSelectedAssets: isCheckSelected
-        //   ? maxLength
-        //   : maxLength - dataListImage.length,
+        maxSelectedAssets: maxLength - filesSelected.length,
         mediaType: "image",
       };
 
@@ -429,7 +429,9 @@ const Ckfinder = ({}, ref) => {
                         <TouchableOpacity
                           onPress={() => {
                             closeFolderList();
-                            handleSelectFile({ ...item, uri });
+                            if (maxLength < filesSelected.length) {
+                              handleSelectFile({ ...item, uri });
+                            }
                           }}
                           key={item.name}
                           style={[styles.item, checked && styles.itemActive]}
