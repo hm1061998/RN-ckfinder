@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, {  useState, useCallback, useLayoutEffect } from "react";
 import {
   View,
   TouchableOpacity,
@@ -31,7 +31,7 @@ const TreeItem = ({
   const path = startupPath.split(":");
   const defaultCurrentFolder = path[1]?.replaceAll("/", "");
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     //nếu là thư mục được mở mặc định
     if (defaultExpanded) {
       //nếu có thư mục con

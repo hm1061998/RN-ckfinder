@@ -90,8 +90,8 @@ const Ckfinder = ({}, ref) => {
     if (!visible) {
       closeFolderList();
       setFilesSelected([]);
-      setCkFinderData(null);
-      setFilesData(null);
+      // setCkFinderData(null);
+      // setFilesData(null);
       setFolderActiveName(null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
