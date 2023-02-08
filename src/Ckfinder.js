@@ -5,6 +5,7 @@ import React, {
   useImperativeHandle,
   useState,
   useCallback,
+  useLayoutEffect,
 } from "react";
 import {
   View,
@@ -79,7 +80,7 @@ const Ckfinder = ({}, ref) => {
     },
   }));
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (visible) {
       handleInit();
     }
